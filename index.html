@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>寵物模擬器99RPGs公會網站</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Poppins:wght@600&display=swap');
         
         :root {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
             --accent-color: #ff6b35;
-            --secondary-color: #ffc13b;
-            --tertiary-color: #4ecdc4;
+            --secondary-color: #4ecdc4;
+            --tertiary-color: #ffc13b;
         }
         
         * {
@@ -49,17 +49,18 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
             animation: pulse 2s infinite alternate;
         }
         
         @keyframes pulse {
-            from { transform: scale(1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-            to { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+            from { transform: scale(1); box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); }
+            to { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
         }
         
         h1 {
-            font-size: 3rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
             margin-bottom: 0.5rem;
             color: var(--bg-color);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -67,47 +68,50 @@
         
         main {
             padding: 3rem 1rem;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
-        .rules-container {
+        .section-container {
             background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .rules-container:hover {
+        .section-container:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
         
         h2 {
-            font-size: 2rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
             margin-bottom: 1.5rem;
-            color: var(--tertiary-color);
+            color: var(--accent-color);
             text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         
-        .rule-item {
+        .item {
             background-color: rgba(255, 255, 255, 0.03);
             margin-bottom: 1rem;
-            padding: 1rem 1.5rem;
-            border-radius: 5px;
+            padding: 1rem 1.5rem 1rem 3rem;
+            border-radius: 8px;
             position: relative;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s forwards;
         }
         
-        .rule-item::before {
-            content: '📣';
+        .item::before {
+            content: '🔹';
             position: absolute;
-            left: 0.5rem;
+            left: 1rem;
             top: 1rem;
+            color: var(--secondary-color);
         }
         
         @keyframes fadeInUp {
@@ -119,7 +123,7 @@
         
         .btn {
             display: block;
-            width: 200px;
+            width: 250px;
             margin: 2rem auto 0;
             padding: 1rem;
             background-color: var(--accent-color);
@@ -127,6 +131,7 @@
             text-decoration: none;
             text-align: center;
             font-weight: bold;
+            font-size: 1.1rem;
             border-radius: 50px;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -135,7 +140,7 @@
         }
         
         .btn:hover, .btn:focus {
-            background-color: var(--secondary-color);
+            background-color: var(--tertiary-color);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
         }
@@ -149,7 +154,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(0,0,0,0.7);
             animation: fadeIn 0.3s;
         }
         
@@ -157,10 +162,10 @@
             background-color: var(--bg-color);
             margin: 15% auto;
             padding: 2rem;
-            border: 1px solid var(--accent-color);
+            border: 2px solid var(--accent-color);
             width: 90%;
             max-width: 500px;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 5px 30px rgba(0,0,0,0.3);
             animation: slideIn 0.3s;
         }
@@ -192,7 +197,11 @@
         
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
             }
             
             .logo-container {
@@ -200,7 +209,7 @@
                 height: 120px;
             }
             
-            .rules-container {
+            .section-container {
                 padding: 1.5rem;
             }
         }
@@ -214,14 +223,23 @@
         <h1>寵物模擬器99RPGs公會</h1>
     </header>
     <main>
-        <div class="rules-container">
+        <div class="section-container">
             <h2>公會規則</h2>
-            <div class="rule-item">公會目前加入需求最低Rank15和每週10M捐款，日後我們可能還會適度提高捐款和Rank的要求，或者更換其他更好的方式來維持公會的活躍度</div>
-            <div class="rule-item">公會捐款恢復期間，會以公會戰時間做計算，例如本次公會戰結束前必須捐最少10M和貢獻XX顆星星，公會戰結束後沒達標者將會被請離遊戲公會，我們會定期公佈個人總捐款金額需要多少，不管大號還是小號都必須跟著做哦。</div>
-            <div class="rule-item">不被請離其實很簡單，只要可以達到個人捐款要求，還有XX星星即可。</div>
-            <div class="rule-item">若同意請按下方按鈕加入我們的行列！</div>
+            <div class="item">公會戰結束後0星成員會直接請離，就算你有捐款，0星我會一律視為退遊不玩。</div>
+            <div class="item">所有捐款都是直接進入公會倉庫，會長和副會長是完全無法拿到任何一個鑽石，都是用來升級和開起會員欄位用而已。</div>
+            <div class="item">我們拒絕伸手黨！拒絕吵架！拒絕騙子！各位相親相愛！恩恩愛愛！</div>
+            <div class="item">若有違規者，第一次將會送你一個新身份！第二次就直接請離！如果是騙子沒有機會！直接請離並且永久黑名單！</div>
         </div>
-        <button id="joinBtn" class="btn">同意並加入</button>
+        
+        <div class="section-container">
+            <h2>加入要求</h2>
+            <div class="item">公會目前加入需求最低Rank15。</div>
+            <div class="item">每週需要10M捐款，日後可能會適度提高捐款和Rank的要求。</div>
+            <div class="item">公會捐款恢復期間，會以公會戰時間做計算，例如本次公會戰結束前必須捐最少10M和貢獻XX顆星星。</div>
+            <div class="item">不被請離很簡單，只要可以達到個人捐款要求，還有XX星星即可。</div>
+        </div>
+        
+        <button id="joinBtn" class="btn">同意規則並申請加入</button>
     </main>
 
     <div id="joinModal" class="modal">
@@ -251,9 +269,9 @@
             }
         }
 
-        // 添加規則項目的延遲動畫
-        const ruleItems = document.querySelectorAll('.rule-item');
-        ruleItems.forEach((item, index) => {
+        // 添加項目的延遲動畫
+        const items = document.querySelectorAll('.item');
+        items.forEach((item, index) => {
             item.style.animationDelay = `${index * 0.1}s`;
         });
     </script>
