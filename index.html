@@ -27,20 +27,21 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color 0.3s ease;
+            overflow-x: hidden;
         }
         
         header {
             background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 4rem 1rem;
             position: relative;
             overflow: hidden;
         }
         
         .logo-container {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             margin: 0 auto 2rem;
         }
         
@@ -60,25 +61,40 @@
         
         h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 0.5rem;
             color: var(--bg-color);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
         }
         
         main {
             padding: 3rem 1rem;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
         .section-container {
             background-color: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .section-container:hover {
@@ -86,32 +102,67 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
         
+        .section-container:hover::before {
+            opacity: 1;
+        }
+        
         h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             color: var(--accent-color);
             text-align: center;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .section-container:hover h2::after {
+            transform: scaleX(1);
         }
         
         .item {
             background-color: rgba(255, 255, 255, 0.03);
-            margin-bottom: 1rem;
-            padding: 1rem 1.5rem 1rem 3rem;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem 1.5rem 1.2rem 3rem;
             border-radius: 8px;
             position: relative;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s forwards;
+            transition: all 0.3s ease;
+        }
+        
+        .item:hover {
+            background-color: rgba(255, 255, 255, 0.07);
+            transform: translateX(5px);
         }
         
         .item::before {
             content: '🔹';
             position: absolute;
             left: 1rem;
-            top: 1rem;
+            top: 1.2rem;
             color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .item:hover::before {
+            transform: scale(1.2);
         }
         
         @keyframes fadeInUp {
@@ -123,20 +174,42 @@
         
         .btn {
             display: block;
-            width: 250px;
-            margin: 2rem auto 0;
-            padding: 1rem;
+            width: 280px;
+            margin: 3rem auto 0;
+            padding: 1.2rem;
             background-color: var(--accent-color);
             color: var(--bg-color);
             text-decoration: none;
             text-align: center;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             border-radius: 50px;
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
             outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: all 0.6s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:hover, .btn:focus {
@@ -161,13 +234,14 @@
         .modal-content {
             background-color: var(--bg-color);
             margin: 15% auto;
-            padding: 2rem;
+            padding: 2.5rem;
             border: 2px solid var(--accent-color);
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             border-radius: 15px;
             box-shadow: 0 5px 30px rgba(0,0,0,0.3);
             animation: slideIn 0.3s;
+            position: relative;
         }
         
         @keyframes fadeIn {
@@ -182,7 +256,9 @@
         
         .close {
             color: var(--text-color);
-            float: right;
+            position: absolute;
+            top: 10px;
+            right: 20px;
             font-size: 28px;
             font-weight: bold;
             transition: color 0.3s ease;
@@ -195,22 +271,67 @@
             cursor: pointer;
         }
         
+        .trade-rules {
+            background-color: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .trade-rules h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .trade-rules ul {
+            list-style-type: none;
+        }
+        
+        .trade-rules li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .trade-rules li:hover {
+            transform: translateX(5px);
+        }
+        
+        .trade-rules li::before {
+            content: '➤';
+            position: absolute;
+            left: 0;
+            color: var(--tertiary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .trade-rules li:hover::before {
+            transform: scale(1.2);
+        }
+        
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
             
             h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .logo-container {
-                width: 120px;
-                height: 120px;
+                width: 150px;
+                height: 150px;
             }
             
             .section-container {
-                padding: 1.5rem;
+                padding: 2rem;
+            }
+            
+            .btn {
+                width: 100%;
             }
         }
     </style>
@@ -218,7 +339,7 @@
 <body>
     <header>
         <div class="logo-container">
-            <img src="/api/placeholder/150/150" alt="公會圖標" class="logo">
+            <img src="/api/placeholder/180/180" alt="公會圖標" class="logo">
         </div>
         <h1>寵物模擬器99RPGs公會</h1>
     </header>
@@ -229,6 +350,20 @@
             <div class="item">所有捐款都是直接進入公會倉庫，會長和副會長是完全無法拿到任何一個鑽石，都是用來升級和開起會員欄位用而已。</div>
             <div class="item">我們拒絕伸手黨！拒絕吵架！拒絕騙子！各位相親相愛！恩恩愛愛！</div>
             <div class="item">若有違規者，第一次將會送你一個新身份！第二次就直接請離！如果是騙子沒有機會！直接請離並且永久黑名單！</div>
+            
+            <div class="trade-rules">
+                <h3>交易區規則</h3>
+                <ul>
+                    <li>買賣方式：貼上要賣或買的商品圖或文字說明，附上價格和買賣標籤。</li>
+                    <li>請耐心等待他人回覆訊息，若無法等待請到交易所交易。</li>
+                    <li>禁止劫鏢行為（搶先完成他人正在進行的交易）。</li>
+                    <li>建議使用遊戲內面交方式，以防被騙。</li>
+                    <li>競標時需附上商品圖、起標價、最低出價和結束時間。</li>
+                    <li>所有交易請以遊戲內貨幣或道具進行，特殊交易需獲得許可。</li>
+                    <li>違反規則者將被請離，不接受求情。</li>
+                    <li>請勿發布與交易無關的內容。</li>
+                </ul>
+            </div>
         </div>
         
         <div class="section-container">
@@ -247,6 +382,8 @@
             <span class="close">&times;</span>
             <h2>如何加入公會</h2>
             <p>請私訊 Discord 用戶 tw_johnjohn2011 以獲取加入公會的進一步指示。</p>
+            <p>Discord 用戶名: <strong>tw_johnjohn2011</strong></p>
+            <button id="copyDiscordBtn" class="btn">複製 Discord 用戶名</button>
         </div>
     </div>
 
@@ -254,6 +391,7 @@
         const modal = document.getElementById("joinModal");
         const btn = document.getElementById("joinBtn");
         const span = document.getElementsByClassName("close")[0];
+        const copyDiscordBtn = document.getElementById("copyDiscordBtn");
 
         btn.onclick = function() {
             modal.style.display = "block";
@@ -269,11 +407,14 @@
             }
         }
 
-        // 添加項目的延遲動畫
-        const items = document.querySelectorAll('.item');
-        items.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.1}s`;
-        });
+        copyDiscordBtn.onclick = function() {
+            const discordUsername = "tw_johnjohn2011";
+            navigator.clipboard.writeText(discordUsername).then(function() {
+                alert("Discord 用戶名已複製到剪貼簿!");
+            }, function() {
+                alert("無法複製 Discord 用戶名。請手動複製: tw_johnjohn2011");
+            });
+        }
     </script>
 </body>
 </html>
