@@ -102,11 +102,62 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
         }
         
         .btn:hover {
             background-color: var(--secondary-color);
             transform: translateY(-2px);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background-color: var(--bg-color);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid var(--accent-color);
+            width: 80%;
+            max-width: 500px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+        
+        @keyframes slideIn {
+            from {transform: translateY(-50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: var(--text-color);
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -125,7 +176,35 @@
             <!-- 其他規則項目 -->
             <div class="rule-item">若同意請按下方 🆗 </div>
         </div>
-        <a href="#" class="btn">同意並加入</a>
+        <button id="joinBtn" class="btn">同意並加入</button>
     </main>
+
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>如何加入公會</h2>
+            <p>請私訊 Discord 用戶 tw_johnjohn2011 以獲取加入公會的進一步指示。</p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("joinModal");
+        const btn = document.getElementById("joinBtn");
+        const span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
