@@ -8,72 +8,95 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
         
         :root {
-            --bg-color: #1a1a1a;
-            --text-color: #f4f4f4;
-            --accent-color: #ff6600;
-            --secondary-color: #ffcc00;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #ff6b35;
+            --secondary-color: #ffc13b;
+            --tertiary-color: #4ecdc4;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
             font-family: 'Noto Sans TC', sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color 0.3s ease;
         }
         
         header {
-            background-color: rgba(255, 102, 0, 0.1);
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 1rem;
             position: relative;
             overflow: hidden;
         }
         
+        .logo-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+        }
+        
         .logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 1rem;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
             animation: pulse 2s infinite alternate;
         }
         
         @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
+            from { transform: scale(1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            to { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 0.5rem;
-            color: var(--accent-color);
+            color: var(--bg-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         main {
-            padding: 2rem;
-            max-width: 800px;
+            padding: 3rem 1rem;
+            max-width: 900px;
             margin: 0 auto;
         }
         
-        .rules {
-            background-color: rgba(255, 204, 0, 0.1);
-            border-left: 5px solid var(--secondary-color);
-            padding: 1.5rem;
+        .rules-container {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
             margin-bottom: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .rules:hover {
+        .rules-container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--tertiary-color);
+            text-align: center;
         }
         
         .rule-item {
+            background-color: rgba(255, 255, 255, 0.03);
             margin-bottom: 1rem;
-            padding-left: 1.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
             position: relative;
             opacity: 0;
             transform: translateY(20px);
@@ -83,8 +106,8 @@
         .rule-item::before {
             content: '📣';
             position: absolute;
-            left: 0;
-            top: 0;
+            left: 0.5rem;
+            top: 1rem;
         }
         
         @keyframes fadeInUp {
@@ -95,19 +118,26 @@
         }
         
         .btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
+            display: block;
+            width: 200px;
+            margin: 2rem auto 0;
+            padding: 1rem;
             background-color: var(--accent-color);
-            color: var(--text-color);
+            color: var(--bg-color);
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease;
             cursor: pointer;
+            border: none;
+            outline: none;
         }
         
-        .btn:hover {
+        .btn:hover, .btn:focus {
             background-color: var(--secondary-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
         }
         
         .modal {
@@ -119,19 +149,19 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.6);
             animation: fadeIn 0.3s;
         }
         
         .modal-content {
             background-color: var(--bg-color);
             margin: 15% auto;
-            padding: 20px;
+            padding: 2rem;
             border: 1px solid var(--accent-color);
-            width: 80%;
+            width: 90%;
             max-width: 500px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
             animation: slideIn 0.3s;
         }
         
@@ -146,35 +176,50 @@
         }
         
         .close {
-            color: #aaa;
+            color: var(--text-color);
             float: right;
             font-size: 28px;
             font-weight: bold;
-            cursor: pointer;
+            transition: color 0.3s ease;
         }
         
         .close:hover,
         .close:focus {
-            color: var(--text-color);
+            color: var(--accent-color);
             text-decoration: none;
             cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .logo-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .rules-container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="/api/placeholder/100/100" alt="公會圖標" class="logo">
+        <div class="logo-container">
+            <img src="/api/placeholder/150/150" alt="公會圖標" class="logo">
+        </div>
         <h1>寵物模擬器99RPGs公會</h1>
     </header>
     <main>
-        <h2>公會規則</h2>
-        <div class="rules">
-            <p><strong>請詳細閱讀規則並按下同意加入，感謝您的配合。</strong></p>
+        <div class="rules-container">
+            <h2>公會規則</h2>
             <div class="rule-item">公會目前加入需求最低Rank15和每週10M捐款，日後我們可能還會適度提高捐款和Rank的要求，或者更換其他更好的方式來維持公會的活躍度</div>
             <div class="rule-item">公會捐款恢復期間，會以公會戰時間做計算，例如本次公會戰結束前必須捐最少10M和貢獻XX顆星星，公會戰結束後沒達標者將會被請離遊戲公會，我們會定期公佈個人總捐款金額需要多少，不管大號還是小號都必須跟著做哦。</div>
             <div class="rule-item">不被請離其實很簡單，只要可以達到個人捐款要求，還有XX星星即可。</div>
-            <!-- 其他規則項目 -->
-            <div class="rule-item">若同意請按下方 🆗 </div>
+            <div class="rule-item">若同意請按下方按鈕加入我們的行列！</div>
         </div>
         <button id="joinBtn" class="btn">同意並加入</button>
     </main>
@@ -205,6 +250,12 @@
                 modal.style.display = "none";
             }
         }
+
+        // 添加規則項目的延遲動畫
+        const ruleItems = document.querySelectorAll('.rule-item');
+        ruleItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
     </script>
 </body>
 </html>
